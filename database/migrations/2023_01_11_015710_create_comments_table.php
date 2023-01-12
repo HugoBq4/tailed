@@ -20,7 +20,8 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('reply_comment_id')->nullable(true);
             $table->foreign('reply_comment_id')->references('comment_id')->on('comments');
             $table->string('comment','500');
-            $table->unsignedBigInteger('post_id')->nullable(false)->default(1);
+            $table->unsignedBigInteger('status')->nullable(false)->default(1);
+            $table->foreign('status')->references('status_id')->on('status');
             $table->timestamps();
         });
     }

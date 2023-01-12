@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentStatusTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCommentStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('comment_status', function (Blueprint $table) {
-            $table->id('id_status');
-            $table->string('description');
+        Schema::create('tags', function (Blueprint $table) {
+            $table->id('tag_id');
+            $table->string('value');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateCommentStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment_status');
+        Schema::dropIfExists('tags');
     }
 }

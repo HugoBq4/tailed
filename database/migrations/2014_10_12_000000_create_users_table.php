@@ -23,9 +23,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('sequencia')->default(0);
-            $table->integer('status')->default(1);
-            $table->integer('tipo_user')->default(0);
+            $table->integer('sequence')->default(0);
+            $table->unsignedBigInteger('language')->nullable(false)->default(1);
+            $table->foreign('language')->references('language_id')->on('languages');
+            $table->integer('type_user')->default(0);
+            $table->unsignedBigInteger('status')->nullable(false)->default(1);
+            $table->foreign('status')->references('status_id')->on('status');
             $table->rememberToken();
             $table->timestamps();
         });

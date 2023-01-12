@@ -18,6 +18,7 @@ class CreateCommentTailsTable extends Migration
             $table->foreign('comment_id')->references('comment_id')->on('comments');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->boolean('happy_tail')->default(1);
             $table->timestamps();
         });
     }

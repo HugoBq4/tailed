@@ -18,8 +18,10 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('file');
-            $table->string('description')->nullable(true);
-            $table->tinyInteger('status')->default('1');
+            $table->string('description',500)->nullable(true);
+            $table->string('author',100)->nullable(true);
+            $table->unsignedBigInteger('status')->nullable(false)->default(1);
+            $table->foreign('status')->references('status_id')->on('status');
             $table->timestamps();
         });
     }

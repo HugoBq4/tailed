@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
- * @property $visitor_id
- * @property $visited_id
+ * @property $user_id
+ * @property $until
  * @property $created_at
  * @property $updated_at
  */
-class Visits extends Model
+class Bans extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -23,35 +22,25 @@ class Visits extends Model
     /**Configurações personalizadas Dextak*/
     public $timestamps = true;
     public $incrementing = false;
-    protected $table = 'visits';
-    protected $primaryKey = ['visitor_id','visited_id'];
+    protected $table = 'bans';
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['visitor_id', 'visited_id'];
+    protected $fillable = ['user_id', 'until'];
 
-
-    public function getVisitor()
+    public function getUser()
     {
         return User::find($this->visitor_id);
     }
 
-    public function getVisited()
-    {
-        return User::find($this->visitor_id);
-    }
-
-    public function getFirstVisit()
-    {
-        return $this->created_at;
-    }
-
-    public function getLastVisit()
-    {
-        return $this->updated_at;
+    public function getDaysRemaining(){
+        $diff = strtotime($this->created_at) - strtotime($this->until);
+        // 1 day = 24 hours
+        // 24 * 60 * 60 = 86400 seconds
+        return ceil(abs($diff / 86400));
     }
 
 }

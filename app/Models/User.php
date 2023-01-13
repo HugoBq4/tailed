@@ -62,4 +62,15 @@ class User extends Authenticatable
     {
         return $this->picture;
     }
+
+    public function isBanned()
+    {
+        return Bans::where('id', '=', $this->id)->where('until', '>', date('Y-m-d H:i:s'))->get()->first();
+    }
+
+    public function timesBanned(): int
+    {
+        return count(Bans::where('id', '=', $this->id)->get());
+    }
+
 }

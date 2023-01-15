@@ -73,4 +73,21 @@ class User extends Authenticatable
         return count(Bans::where('id', '=', $this->id)->get());
     }
 
+
+    public function getLastViews()
+    {
+        return Tails::where('user_id', '=', '1')
+                ->join('posts', 'posts.post_id', '=', 'tails.post_id')
+                ->orderBy('updated_at', 'desc')
+                ->paginate() ?? [];
+    }
+
+    public function getLastHappyTails()
+    {
+        return Tails::where('user_id', '=', '1')
+                ->join('posts', 'posts.post_id', '=', 'tails.post_id')
+                ->orderBy('updated_at', 'desc')
+                ->paginate() ?? [];
+    }
+
 }

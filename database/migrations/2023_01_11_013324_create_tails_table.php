@@ -18,7 +18,7 @@ class CreateTailsTable extends Migration
             $table->foreign('post_id')->references('post_id')->on('posts');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->boolean('happy_tail')->default(1)->nullable(false);
+            $table->boolean('happy_tail')->default(1)->nullable(true);
             $table->timestamps();
         });
     }

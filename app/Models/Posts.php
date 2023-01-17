@@ -46,7 +46,7 @@ class Posts extends Model
 
     public function getColetivo()
     {
-        return Posts::where('status', '=', '1')->get() ?? [];
+        return Posts::where('status', '=', '1')->paginate() ?? [];
     }
 
 }

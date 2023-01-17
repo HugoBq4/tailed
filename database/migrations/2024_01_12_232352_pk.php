@@ -40,8 +40,11 @@ class Pk extends Migration
 
             "alter table follows
     add constraint follows_pk
-        primary key (follower_id, followed_id);",//visits
+        primary key (follower_id, followed_id);",//follows
 
+            "alter table blocks
+    add constraint blocks_pk
+        primary key (blocker_id, blocked_id);",//blocks
 
 
             ];

@@ -15,14 +15,14 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id('post_id');
-            $table->unsignedBigInteger('views');
-            $table->unsignedBigInteger('language');
+            $table->unsignedBigInteger('views')->comment('Quantidade de visualizações do post');
+            $table->unsignedBigInteger('language')->comment('id da lingua do post');
             $table->foreign('language')->references('language_id')->on('languages');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('file');
             $table->string('description',500)->nullable(true);
-            $table->string('author',100)->nullable(true);
+            $table->string('author',200)->nullable(true)->comment('fonte original do post se houver');
             $table->unsignedBigInteger('status')->nullable(false)->default(1);
             $table->foreign('status')->references('status_id')->on('status');
             $table->timestamps();

@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\Padrao\HomeController::class, 'index'])->name('home');
+Route::get('/registrar', [App\Http\Controllers\Padrao\HomeController::class, 'register'])->name('register');
+Route::get('/login', [App\Http\Controllers\Padrao\HomeController::class, 'login'])->name('login');
+Route::get('/login/enviar', [App\Http\Controllers\Padrao\HomeController::class, 'submitLogin'])->name('login-submit');
+Route::get('/logout', [App\Http\Controllers\Padrao\HomeController::class, 'logout'])->name('logout');
+Route::get('/privacidade', [App\Http\Controllers\Padrao\HomeController::class, 'privacidade'])->name('privacidade');

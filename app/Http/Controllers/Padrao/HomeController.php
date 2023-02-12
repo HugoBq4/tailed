@@ -11,10 +11,6 @@ class HomeController
         return 'index';
     }
 
-    public function register(){
-        return view('auth.register');
-    }
-
     public function login(){
         return 'login';
     }

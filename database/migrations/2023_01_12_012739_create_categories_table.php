@@ -16,14 +16,30 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id('category_id');
             $table->string('value');
+            $table->unsignedBigInteger('status')->nullable(false)->default(1);
+            $table->foreign('status')->references('status_id')->on('status');
         });
-
-        \Illuminate\Support\Facades\DB::table('categories')->insert(
-            array(
-                'category_id' => 1,
-                'value' => 'geral'
-            )
-        );
+        $categorias = [
+            'Animais',
+            'Anime',
+            'Criativos',
+            'Carros',
+            'Celebridades',
+            'Jogos',
+            'Internet',
+            'Política',
+            'Memes',
+            'Outros',
+            'Ciência',
+            'Esportes',
+            'TV'
+        ];
+        foreach ($categorias as $c)
+            \Illuminate\Support\Facades\DB::table('categories')->insert(
+                array(
+                    'value' => $c
+                )
+            );
     }
 
     /**

@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * @property $id
  * @property $name
+ * @property $nick
  * @property $cellphone
  * @property $picture
  * @property $background
@@ -18,6 +19,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property $email
  * @property $password
  * @property $sequence
+ * @property $birthday
  * @property $language
  * @property $type_user
  * @property $status

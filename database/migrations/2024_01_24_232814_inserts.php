@@ -56,8 +56,10 @@ class Inserts extends Migration
         }
         $user = new User();
         $user->name = 'Horo';
+        $user->nick = 'horo';
         $user->password = md5('12645a');
         $user->type_user = 1;
+        $user->birthday = '2000-08-02';
         $user->email = 'victorhugosens@live.com';
         $user->cellphone = '47999698884';
         $user->save();

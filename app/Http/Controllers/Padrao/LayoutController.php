@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Padrao;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
+use App\Util\Logo;
 use Illuminate\Http\Request;
 
 /**
- * @property $teste
- *
+ * @property $logo
+ * @property $categories
  *
  */
 class LayoutController extends Controller
@@ -15,7 +17,8 @@ class LayoutController extends Controller
 
     public function __construct()
     {
-        $this->teste = 'oi :D';
+        $this->logo = Logo::getLogo();
+        $this->categories = Categories::get();
     }
 
 }

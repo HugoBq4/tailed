@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-{{--    <link rel="shortcut icon" href="{{Url('/')}}/assets_admin/img/logo-defesa.ico"/>--}}
+    {{--    <link rel="shortcut icon" href="{{Url('/')}}/assets_admin/img/logo-defesa.ico"/>--}}
     <title>@yield('titulo')</title>
 
     <!-- CSS -->
@@ -15,49 +15,74 @@
     @yield('css-custom')
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
+<!-- Inicio loader tails-->
 <div class="loader"></div>
+<!-- Fim loader tails-->
 
-<div id="app">
-    <div class="main-wrapper main-wrapper-1">
-        <!-- Main Content -->
-        <div class="main-content" style="padding: 10vh 10vw">
-            <section class="section">
-                <div class="section-body">
-                    @yield('conteudo')
+<!-- Início Header tails-->
+<nav class="navbar navbar-expand-md navbar-dark bg-transparent p-rl-50">
+    <a class="navbar-brand" style="margin:20px 75px 20px 20px;" href="{{url('/')}}"><img src="{{$controller->logo[50]}}"
+                                                                                         alt="Logo da Tails"></a>
 
-                    @yield('modais')
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+            aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Quentes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Comunidade</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownCategories" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="true">Categorias</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownCategories">
+                    @foreach($controller->categories as $c)
+                        <a class="dropdown-item" href="{{$c->getLink()}}">{{$c->value}}</a>
+                    @endforeach
                 </div>
-            </section>
-        </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Fim Header tails-->
+
+
+<!-- Início conteúdo tails-->
+<div class="main-wrapper main-wrapper-1">
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="section">
+            <div class="section-body">
+                @yield('conteudo')
+            </div>
+        </section>
     </div>
 </div>
+<!-- Fim conteúdo tails-->
 
-{{--<footer class="main-footer">--}}
-{{--    <div class="footer-left">--}}
-{{--        &copy; {{date('Y')}}--}}
-{{--        <div class="bullet"></div>--}}
-{{--        Desenvolvido por <a href="#">Hugo</a>--}}
-{{--    </div>--}}
-{{--    <div class="footer-right">--}}
-{{--    </div>--}}
-{{--</footer>--}}
-<br><br><br><br><br>
-<br><br><br><br><br>
-<br><br><br><br><br><br>
+@yield('modais')
 
-<div class="default-bg blur-trans mh-200 position-absolute w-100" style="background-image: url({{url('/assets_padrao/images/wallpapers/wolf.jpg')}});"></div>
-<footer class="py-3 my-4 default-bg position-absolute w-100" >
+<!-- Início footer tails-->
+<footer class="py-3 my-4 default-bg footer w-100">
+    <div class="default-bg blur-trans position-absolute footer-img w-100 h-100"
+         style="background-image: url({{url('/assets_padrao/images/wallpapers/wolf.jpg')}});"></div>
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="{{url('/')}}" class="nav-link px-2 text-muted">Home</a></li>
         <li class="nav-item"><a href="{{route('privacidade')}}" class="nav-link px-2 text-muted">Privacidade</a></li>
     </ul>
     <p class="text-center text-muted">&copy; {{date('Y')}}</p>
 </footer>
+<!-- Fim footer tails-->
 
 
-<!-- Scripts -->
+<!-- Scripts tails -->
+<script src="{{Url('/')}}/assets_padrao/js/jquery.min.js"></script>
 <script src="{{Url('/')}}/assets_padrao/js/bootstrap.min.js"></script>
 @yield('js-custom')
 

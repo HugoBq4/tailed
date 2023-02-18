@@ -19,7 +19,8 @@ Route::post('/registrar/enviar', [App\Http\Controllers\Padrao\UserController::cl
 Route::get('/login', [App\Http\Controllers\Padrao\HomeController::class, 'login'])->name('login');
 Route::get('/login/enviar', [App\Http\Controllers\Padrao\HomeController::class, 'submitLogin'])->name('login-submit');
 Route::get('/logout', [App\Http\Controllers\Padrao\HomeController::class, 'logout'])->name('logout');
-Route::get('/privacidade', [App\Http\Controllers\Padrao\HomeController::class, 'privacidade'])->name('privacidade');
+Route::get('/privacidade', [App\Http\Controllers\Padrao\HomeController::class, 'privacidade'])->name('privacity');
+Route::get('/termos-de-uso', [App\Http\Controllers\Padrao\HomeController::class, 'termos'])->name('terms');
 
 //categorias
 Route::get('/categoria/{category_id}', [App\Http\Controllers\Padrao\CategoriaController::class, 'index'])->name('categoria');

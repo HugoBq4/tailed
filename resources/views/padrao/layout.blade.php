@@ -74,7 +74,7 @@
          style="background-image: url({{url('/assets_padrao/images/wallpapers/wolf.jpg')}});"></div>
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="{{url('/')}}" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="{{route('privacidade')}}" class="nav-link px-2 text-muted">Privacidade</a></li>
+        <li class="nav-item"><a href="{{route('privacity')}}" class="nav-link px-2 text-muted">Privacidade</a></li>
     </ul>
     <p class="text-center text-muted">&copy; {{date('Y')}}</p>
 </footer>
@@ -82,8 +82,10 @@
 
 
 <!-- Scripts tails -->
-<script src="{{Url('/')}}/assets_padrao/js/jquery.min.js"></script>
 <script src="{{Url('/')}}/assets_padrao/js/bootstrap.min.js"></script>
+<script src="{{Url('/')}}/assets_padrao/js/jquery.min.js"></script>
+<script src="{{Url('/')}}/assets_padrao/js/jquery.validate.min.js"></script>
+<script src="{{Url('/')}}/assets_padrao/js/validationsv1.js"></script>
 @yield('js-custom')
 
 </body>

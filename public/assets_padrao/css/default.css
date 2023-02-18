@@ -165,6 +165,7 @@ a:hover {
 }
 
 .bg-30 {
+    margin: 0 20%;
     background-color: var(--background-color-rgb30) !important;
 }
 
@@ -181,7 +182,7 @@ a:hover {
 }
 
 .pd-container {
-    padding: 40px 20%;
+    padding: 40px 50px;
 }
 
 .pd-input-buttons {
@@ -196,9 +197,9 @@ a:hover {
     width: 100%;
     margin-bottom: 25px;
     height: 41px;
-    border-radius: var(--bs-nav-pills-border-radius)!important;
+    border-radius: var(--bs-nav-pills-border-radius) !important;
     background-color: transparent;
-    border-color: var(--primary-color-rgb30) ;
+    border-color: var(--primary-color-rgb30);
     box-shadow: none;
     outline: none !important;
     border-width: 1px;
@@ -207,13 +208,36 @@ a:hover {
     color: white;
 }
 
+
+.form-default input[type="checkbox"] {
+    height: 13px;
+    width: 13px;
+    margin: 0 8px 4px 0;
+    position: relative;
+    vertical-align: bottom;
+}
+
+.form-default input[type="checkbox"]:checked {
+    border-color: red!important;
+    background-color:red!important;
+}
+.labelCheck {
+    color: darkgray;
+    display: contents;
+    font-size: 13px;
+}
+
+.labelCheck a {
+    color: var(--primary-color-rgb60);
+}
+
 .form-default input:focus {
     border-color: var(--primary-color-rgb60);
     color: white;
 }
 
 .form-default input:hover {
-    border-color: var(--primary-color-rgb90) ;
+    border-color: var(--primary-color-rgb90);
     color: white;
 }
 
@@ -221,7 +245,7 @@ a:hover {
     color: gray;
 }
 
-.pd-input{
+.pd-input {
     padding: 0 15px;
 }
 

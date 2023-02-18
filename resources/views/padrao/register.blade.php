@@ -22,16 +22,21 @@
                 <form id="registrar">
                     <div class="row pd-input">
                         <div class="col-12 form-default">
-                            <input type="text" name="name" id="name" placeholder="Seu nome*" value="">
+                            <input type="text" name="name" id="name" placeholder="nick *" value="">
                         </div>
                         <div class="col-12 form-default">
-                            <input type="text" name="nick" id="nick" placeholder="Seu nick*" value="">
+                            <input type="text" name="email" id="email" placeholder="email *" value="">
                         </div>
                         <div class="col-12 form-default">
-                            <input type="text" name="email" id="email" placeholder="Seu email*" value="">
+                            <input type="password" name="password" id="password" placeholder="senha *" value="">
                         </div>
                         <div class="col-12 form-default">
-                            <input type="text" name="cellphone" id="cellphone" placeholder="Seu telefone*" value="">
+                            <input type="password" id="confirmpPassword" placeholder="confirmar senha *" value="">
+                        </div>
+                        <div class="col-12 form-default">
+                            <input type="checkbox" id="termos" role="checkbox" name="termos"><label class="labelCheck" for="termos">Declaro
+                                que aceito os <a target="_blank" href="{{route('terms')}}">termos de uso</a> e as
+                                <a target="_blank" href="{{route('privacity')}}">políticas de privacidade</a>.</label>
                         </div>
                     </div>
                 </form>

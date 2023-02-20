@@ -267,7 +267,8 @@ a:hover {
 }
 
 p.error {
-    font-size: 9px;
+    --font-initial: 10px;
+    font-size: var(--font-initial);
     color: var(--color-error);
     margin: 0 0 4px 0;
     animation-name: add_error_log;
@@ -278,7 +279,8 @@ p.error {
 }
 
 p.back_error{
-    font-size: 9px;
+    --font-initial: 10px;
+    font-size: var(--font-initial);
     color: var(--color-error);
     margin: 0 0 4px 0;
     animation-name: add_error_log_back;
@@ -296,7 +298,7 @@ p.back_error{
     }
     to {
         color: var(--color-error);
-        font-size: 9px;
+        font-size: var(--font-initial);
         margin: 0 0 4px 0;
     }
 }
@@ -304,7 +306,7 @@ p.back_error{
 @keyframes add_error_log_back {
     from {
         color: var(--color-error);
-        font-size: 9px;
+        font-size: var(--font-initial);
         margin: 0 0 4px 0;
     }
     to {
@@ -381,4 +383,14 @@ select:-webkit-autofill {
         padding-bottom: 20px;
     }
 
+}
+
+@media ( max-width: 700px) {
+    p.error {
+        --font-initial: 12px;
+    }
+
+    p.back_error{
+        --font-initial: 12px;
+    }
 }

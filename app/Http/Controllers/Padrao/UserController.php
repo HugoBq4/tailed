@@ -29,44 +29,48 @@ class UserController
             $message[] = ['politic' => 'Politica de privacidade deve ser autorizada pelo usuário'];
         }
 
-        if (Texto::verificaCaracteresIlegais($name)) {
+        if (Texto::checkIllegalChars($name)) {
             $message[] = ['name' => 'Insira um nick válido'];
         }
         if (strlen($name) > 20) {
             $message[] = ['name' => 'Nick não deve ser maior que 20 caracteres'];
         }
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 50){
-            $message[] = ['email' => 'Insira um email válido'];
-        }elseif((User::where('email', 'like', $email)->get()->first() != null)){
-            $message[] = ['email' => 'Este email ja está sendo usado por outro usuário'];
+        if (User::where('name', 'like', $name)->get()->first() != null) {
+            $message[] = ['name' => 'Nick ja está em uso'];
         }
-        if(strlen($password) < 8){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 50) {
+            $message[] = ['email' => 'Insira um email válido'];
+        } elseif (User::where('email', 'like', $email)->get()->first() != null) {
+            $message[] = ['email' => 'Este email ja está em uso'];
+        }
+        if (strlen($password) < 8) {
             $message[] = ['password' => 'Senha deve possuir no mínimo 8 caracteres'];
         }
-        if(strlen($password) > 20){
+        if (strlen($password) > 20) {
             $message[] = ['password' => 'Senha deve possuir no máximo 20 caracteres'];
         }
-        if(!preg_match('#[A-Z]+#', $password)){
+        if (!preg_match('#[A-Z]+#', $password)) {
             $message[] = ['password' => 'Senha deve possuir uma letra maiúscula'];
             $message[] = ['confirmPassword' => ''];
         }
-        if(!preg_match('#[a-z]+#', $password)){
+        if (!preg_match('#[a-z]+#', $password)) {
             $message[] = ['password' => 'Senha deve possuir uma letra minúscula'];
             $message[] = ['confirmPassword' => ''];
         }
-        if(!preg_match('#\d+#', $password)){
+        if (!preg_match('#\d+#', $password)) {
             $message[] = ['password' => 'Senha deve possuir um número'];
             $message[] = ['confirmPassword' => ''];
         }
-        if($password !== $request->confirmPassword){
+        if ($password !== $request->confirmPassword) {
             $message[] = ['confirmPassword' => 'Confirmação de senha incorreta'];
         }
 
-        if($message === []){
+        if ($message === []) {
             $status = 'success';
-        }else{
+        } else {
             $status = 'error';
         }
+        return json_encode(['status' => $status, 'message' => $message]);
 
 //        $user = new User();
 //        $user->name = 'Horo';
@@ -79,7 +83,6 @@ class UserController
 //
 //        auth()->login($user);
 
-        return json_encode(['status' => $status, 'message' => $message]);
     }
 
 

@@ -25,9 +25,8 @@
 
 <!-- Início Header tails-->
 <nav class="navbar navbar-expand-md navbar-dark bg-transparent p-rl-50">
-    <a class="navbar-brand" style="margin:20px 75px 20px 20px;" href="{{url('/')}}"><img src="{{$controller->logo[50]}}"
-                                                                                         alt="Logo da Tails"></a>
-
+    <?php $resolucaoLogo = '50px'; ?>
+@include('padrao.svg')
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
             aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

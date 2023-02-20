@@ -386,7 +386,7 @@ class Texto
     /**
      * Se possui caracteres ilegais retorna true
      */
-    public static function verificaCaracteresIlegais($string): bool
+    public static function checkIllegalChars($string): bool
     {
         if (strpos($string, '__')) {
             return true;

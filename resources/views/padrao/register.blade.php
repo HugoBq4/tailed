@@ -50,6 +50,7 @@
     </div>
 @endsection
 
+
 @section('js-custom')
     <script>
         $('#registrar').on('submit', async function (e) {

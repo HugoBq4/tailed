@@ -383,9 +383,19 @@ class Texto
         return $nomeFinal;
     }
 
+    /**
+     * Se possui caracteres ilegais retorna true
+     */
     public static function verificaCaracteresIlegais($string): bool
     {
-        return preg_match('/^[a-zA-Z0-9]+/', $string);
+        if (strpos($string, '__')) {
+            return true;
+        }
+        if (strlen($string) < 4) {
+            return true;
+        }
+        $string = str_replace('_', '', $string);
+        return !ctype_alnum($string);
     }
 
 }

@@ -10,8 +10,10 @@
     <title>@yield('titulo')</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{Url('/')}}/assets_padrao/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{Url('/')}}/assets_padrao/css/default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{Url('/assets_padrao/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{Url('/assets_padrao/bundles/izitoast/dist/css/iziToast.min.css')}}">
+    <link rel="stylesheet" href="{{Url('/assets_padrao/css/default.css')}}">
     @yield('css-custom')
 
 </head>
@@ -82,10 +84,11 @@
 
 
 <!-- Scripts tails -->
-<script src="{{Url('/')}}/assets_padrao/js/bootstrap.min.js"></script>
-<script src="{{Url('/')}}/assets_padrao/js/jquery.min.js"></script>
-<script src="{{Url('/')}}/assets_padrao/js/jquery.validate.min.js"></script>
-<script src="{{Url('/')}}/assets_padrao/js/validationsv1.js"></script>
+<script src="{{Url('/assets_padrao/js/jquery.min.js')}}"></script>
+<script src="{{Url('/assets_padrao/js/bootstrap.min.js')}}"></script>
+<script src="{{Url('/assets_padrao/bundles/izitoast/dist/js/iziToast.min.js')}}"></script>
+<script src="{{Url('/assets_padrao/js/jquery.validate.js')}}"></script>
+<script src="{{Url('/assets_padrao/js/validationsv1.js')}}"></script>
 @yield('js-custom')
 
 </body>

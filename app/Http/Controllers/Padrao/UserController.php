@@ -73,16 +73,6 @@ class UserController
         $message[] = ['birthday' => "Idade mínima é de $minAge anos"];
     }
 
-//        $user = new User();
-//        $user->name = 'Horo';
-//        $user->password = md5('12645a');
-//        $user->type_user = 1;
-//        $user->birthday = '2000-08-02';
-//        $user->email = 'victorhugosens@live.com';
-//        $user->cellphone = '47999698884';
-//        $user->save();
-//
-//        auth()->login($user);
 
         if ($message === []) {
             $status = 'success';
@@ -95,7 +85,9 @@ class UserController
             $user->name = $name;
             $user->email = $email;
             $user->password = md5($password);
+            $user->birthday = $birthday;
             $user->save();
+                    auth()->login($user);
         } catch (\Exception $e) {
             $status = 'error';
         }

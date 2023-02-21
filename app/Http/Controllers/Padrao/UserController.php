@@ -70,8 +70,8 @@ class UserController
         }
         $idade = strtotime(date('d-m-Y')) - strtotime($request->birthday);
         if ($idade <= (60 * 60 * 24 * 30 * 12 * $minAge)) {
-        $message[] = ['birthday' => "Idade mínima é de $minAge anos"];
-    }
+            $message[] = ['birthday' => "Idade mínima é de $minAge anos"];
+        }
 
 
         if ($message === []) {
@@ -80,17 +80,15 @@ class UserController
             $status = 'error';
         }
 
-        try {
+
             $user = new User();
             $user->name = $name;
             $user->email = $email;
             $user->password = md5($password);
             $user->birthday = $birthday;
             $user->save();
-                    auth()->login($user);
-        } catch (\Exception $e) {
-            $status = 'error';
-        }
+            auth()->login($user);
+
 
 
         return json_encode(['status' => $status, 'message' => $message]);

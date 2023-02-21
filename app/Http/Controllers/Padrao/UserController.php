@@ -75,19 +75,22 @@ class UserController
 
 
         if ($message === []) {
-            $status = 'success';
+            try {
+                $user = new User();
+                $user->name = $name;
+                $user->email = $email;
+                $user->password = md5($password);
+                $user->birthday = $birthday;
+                $user->save();
+                auth()->login($user);
+                $status = 'success';
+            } catch (\Exception $e) {
+                $status = 'error';
+            }
         } else {
             $status = 'error';
         }
 
-
-            $user = new User();
-            $user->name = $name;
-            $user->email = $email;
-            $user->password = md5($password);
-            $user->birthday = $birthday;
-            $user->save();
-            auth()->login($user);
 
 
 

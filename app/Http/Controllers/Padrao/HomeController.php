@@ -21,7 +21,10 @@ class HomeController
     }
 
     public function logout(){
-        return 'logout';
+        if(Auth::check()){
+            Auth::logout();
+        }
+        return redirect(route('home'));
     }
 
     public function privacidade(){

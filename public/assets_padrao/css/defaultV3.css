@@ -218,6 +218,18 @@ a:hover {
     color: white;
 }
 
+.form-default input::-webkit-calendar-picker-indicator {
+    filter: blur(999px);
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.form-default input[type="date"]:after {
+    content: 'aniversário *';
+    color: gray;
+}
+
 .right-button {
     display: flex !important;
 }
@@ -240,6 +252,7 @@ a:hover {
     animation-timing-function: ease;
     animation-fill-mode: forwards;
     animation-iteration-count: initial;
+    stroke: var(--primary-color-rgb60) !important;
 }
 
 .is_valid {
@@ -278,7 +291,7 @@ p.error {
     animation-iteration-count: initial;
 }
 
-p.back_error{
+p.back_error {
     --font-initial: 10px;
     font-size: var(--font-initial);
     color: var(--color-error);
@@ -386,16 +399,187 @@ select:-webkit-autofill {
 }
 
 @media ( max-width: 700px) {
-    body{
+    body {
         font-weight: normal;
     }
+
     p.error {
         --font-initial: 12px;
         font-weight: normal;
     }
 
-    p.back_error{
+    p.back_error {
         --font-initial: 12px;
         font-weight: normal;
     }
 }
+
+
+/*datapicker*/
+.useful-datepicker {
+    transform: scale(1.35);
+    width: 260px;
+    position: relative;
+}
+
+.useful-datepicker .popover {
+    background-color: transparent;
+    border: none;
+    border-radius: 7px;
+    margin-top: 8px;
+}
+
+.useful-datepicker .popover .solar-system {
+    padding: 32px 40px;
+    position: relative;
+}
+
+.useful-datepicker .popover .solar-system .rotate .solar-system-dash {
+    width: 180px;
+    height: 180px;
+    display: block;
+    fill: none;
+    stroke: var(--primary-color-rgb60);
+}
+
+.useful-datepicker .popover .solar-system .rotate .earth {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(calc(-50% + 90px), -50%);
+}
+
+.useful-datepicker .popover .solar-system .rotate .earth:before, .useful-datepicker .popover .solar-system .rotate .earth:after {
+    content: "";
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: rgba(200, 228, 255, 0.15);
+    border-radius: 50%;
+}
+
+.useful-datepicker .popover .solar-system .rotate .earth:before {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.useful-datepicker .popover .solar-system .rotate .earth:after {
+    transform: translate(-50%, -50%) scale(1.4);
+}
+
+.useful-datepicker .popover .solar-system .rotate .earth .earth-dash {
+    width: 43px;
+    height: 43px;
+    display: block;
+    fill: none;
+    stroke: var(--primary-color-rgb60);
+}
+
+.useful-datepicker .popover .solar-system .rotate .earth .earth-planet {
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.useful-datepicker .popover .solar-system .rotate .earth .moon {
+    width: 7px;
+    height: 7px;
+    background-color: #f2e6f6;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    transform: translate(calc(-50% + 21.5px), -50%);
+    box-shadow: 0 0 0 1px rgba(242, 230, 247, 0.25);
+}
+
+.useful-datepicker .popover .solar-system .sun {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.useful-datepicker .popover .solar-system .sun .blur {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+    background-color: #fcd385;
+    opacity: 0.2;
+}
+
+.useful-datepicker .popover .solar-system .sun .blur.blur-1 {
+    animation: sun-blur 3s linear 0s infinite;
+}
+
+.useful-datepicker .popover .solar-system .sun .blur.blur-2 {
+    animation: sun-blur 3s linear -1s infinite;
+}
+
+.useful-datepicker .popover .solar-system .sun .blur.blur-3 {
+    animation: sun-blur 3s linear -2s infinite;
+}
+
+@keyframes sun-blur {
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1.75);
+    }
+}
+
+.useful-datepicker .popover .solar-system .sun svg {
+    fill: #fcd385;
+    width: 40px;
+    height: 40px;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+*:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    font-family: 'Inter', Arial;
+    justify-content: center;
+    align-items: center;
+    background-color: #1c202a;
+}
+
+body .twitter {
+    position: fixed;
+    display: block;
+    right: 12px;
+    bottom: 12px;
+}
+
+body .twitter svg {
+    width: 32px;
+    height: 32px;
+    fill: #1da1f2;
+}
+

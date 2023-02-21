@@ -20,10 +20,14 @@ class UserController
 
     public function store(Request $request)
     {
+        $minAge = 13;
+
         $message = array();
         $name = trim($request->name);
         $email = trim($request->email);
         $password = $request->password;
+        $birthday = $request->birthday;
+
 
         if ($request->politic != '1' && $request->politic != 'on') {
             $message[] = ['politic' => 'Politica de privacidade deve ser autorizada pelo usuário'];
@@ -64,13 +68,10 @@ class UserController
         if ($password !== $request->confirmPassword) {
             $message[] = ['confirmPassword' => 'Confirmação de senha incorreta'];
         }
-
-        if ($message === []) {
-            $status = 'success';
-        } else {
-            $status = 'error';
-        }
-        return json_encode(['status' => $status, 'message' => $message]);
+        $idade = strtotime(date('d-m-Y')) - strtotime($request->birthday);
+        if ($idade <= (60 * 60 * 24 * 30 * 12 * $minAge)) {
+        $message[] = ['birthday' => "Idade mínima deve maior de $minAge anos"];
+    }
 
 //        $user = new User();
 //        $user->name = 'Horo';
@@ -82,6 +83,25 @@ class UserController
 //        $user->save();
 //
 //        auth()->login($user);
+
+        if ($message === []) {
+            $status = 'success';
+        } else {
+            $status = 'error';
+        }
+
+        try {
+            $user = new User();
+            $user->name = $name;
+            $user->email = $email;
+            $user->password = md5($password);
+            $user->save();
+        } catch (\Exception $e) {
+            $status = 'error';
+        }
+
+
+        return json_encode(['status' => $status, 'message' => $message]);
 
     }
 

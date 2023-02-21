@@ -70,7 +70,7 @@ class UserController
         }
         $idade = strtotime(date('d-m-Y')) - strtotime($request->birthday);
         if ($idade <= (60 * 60 * 24 * 30 * 12 * $minAge)) {
-        $message[] = ['birthday' => "Idade mínima deve maior de $minAge anos"];
+        $message[] = ['birthday' => "Idade mínima é de $minAge anos"];
     }
 
 //        $user = new User();

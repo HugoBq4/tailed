@@ -14,7 +14,6 @@ class HomeController
 {
     public function index()
     {
-        Artisan::call('optimize');
         return view('padrao.home');
     }
 
@@ -71,9 +70,9 @@ class HomeController
 
     public function optimize()
     {
-        if(Auth::user()->type_user == 1) {
+//        if(Auth::user()->type_user == 1) {
             Artisan::call('optimize');
-        }
+//        }
         return redirect()->route('home');
     }
 

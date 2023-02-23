@@ -72,6 +72,11 @@ class HomeController
     {
 //        if(Auth::user()->type_user == 1) {
             Artisan::call('optimize');
+            Artisan::call('optimize:clear');
+            Artisan::call('route:clear');
+            Artisan::call('config:clear');
+            Artisan::call('view:clear');
+            dd('limpinho');
 //        }
         return redirect()->route('home');
     }

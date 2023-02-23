@@ -15,7 +15,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="{{Url('/assets_padrao/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{Url('/assets_padrao/bundles/izitoast/dist/css/iziToast.min.css')}}">
-    <link rel="stylesheet" href="{{Url('/assets_padrao/css/defaultV3.css')}}">
+    <link rel="stylesheet" href="{{Url('/assets_padrao/css/defaultV4.css')}}">
     @yield('css-custom')
 
 </head>
@@ -26,7 +26,7 @@
 <!-- Fim loader tails-->
 
 <!-- Início Header tails-->
-<nav class="navbar navbar-expand-md navbar-dark bg-transparent p-rl-50">
+<header class="navbar navbar-expand-md navbar-dark bg-transparent p-rl-50">
     <a class="navbar-brand" style="margin:20px 75px 20px 20px;" href="{{url('/')}}">
         <?php $resolucaoLogo = '50px'; ?>
         @include('padrao.svg')
@@ -52,9 +52,29 @@
                     @endforeach
                 </div>
             </li>
+            @if(Auth::check())
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownCategories" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="true">Perfil</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownCategories">
+                        <a class="dropdown-item" href="{{route('logout')}}">Sair</a>
+                        @if(Auth::user()->type_user == '1')
+                            <a class="dropdown-item" href="{{route('resetDB')}}">Reset DB</a>
+                            <a class="dropdown-item" href="{{route('optimize')}}">Optimize</a>
+                        @endif
+                    </div>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{route('register')}}#">Registrar</a>
+                </li>
+            @endif
         </ul>
     </div>
-</nav>
+</header>
 <!-- Fim Header tails-->
 
 

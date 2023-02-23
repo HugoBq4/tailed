@@ -1,8 +1,6 @@
 @extends('padrao.layout')
 
-@section('titulo')
-    Registro de usuário
-@endsection
+@section('titulo', 'Registro de usuário')
 
 @section('conteudo')
     <div class="container pos-container">
@@ -130,14 +128,16 @@
 
 @section('js-custom')
 
-    <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3/dist/Draggable.min.js"></script>
+    <script src="{{url('/assets_padrao/js/gsap.min.js')}}"></script>
+    <script src="{{url('/assets_padrao/js/Draggable.min.js')}}"></script>
     <script src="{{url('/assets_padrao/js/solar-picker.js')}}"></script>
 
     <script>
         $('#registrar').on('submit', async function (e) {
             e.preventDefault();
-            $('#registrar button[type="submit"]').addClass('disabled').html(
+            const form = $(this);
+            const button = form.find('button[type="submit"]')
+            button.addClass('disabled').html(
                 $('<span>').prop({
                     innerHTML: '',
                     className: 'spinner-border spinner-border-sm',
@@ -158,8 +158,8 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{ route('register-send') }}",
-                data: $('#registrar').serialize(),
+                url: "{{ route('register-submit') }}",
+                data: $(this).serialize(),
                 type: 'post',
                 dataType: 'json',
                 success: function (result) {
@@ -172,7 +172,7 @@
                             for (var nameError in value) {
                                 var input = $('[name="' + nameError + '"]');
                                 input.addClass('is_invalid');
-                                if (value[nameError] != '') {
+                                if (value[nameError] !== '') {
                                     input.parents('.form-default').prepend(
                                         $('<p>').prop({
                                             innerHTML: value[nameError],
@@ -182,10 +182,10 @@
                                 }
                             }
                         });
-                        $('#registrar button[type="submit"]').removeClass('disabled').html('Enviar');
+                        button.removeClass('disabled').html('Enviar');
                     }
                 }, error: function (e) {
-                    $('#registrar button[type="submit"]').removeClass('disabled').html('Enviar');
+                    button.removeClass('disabled').addClass('btn-danger').html('Erro');
                 }
             });
         });

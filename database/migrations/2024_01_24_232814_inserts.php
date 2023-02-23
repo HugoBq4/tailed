@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class Inserts extends Migration
@@ -57,7 +58,7 @@ class Inserts extends Migration
         $user = new User();
         $user->name = 'Horo';
 //        $user->nick = 'horo';
-        $user->password = md5('12645a');
+        $user->password = Hash::make('12645a');
         $user->type_user = 1;
         $user->birthday = '2000-08-02';
         $user->email = 'victorhugosens@live.com';

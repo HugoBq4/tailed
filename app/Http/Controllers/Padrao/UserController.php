@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Util\Texto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController
 {
@@ -21,18 +22,14 @@ class UserController
     public function store(Request $request)
     {
         $minAge = 13;
-
         $message = array();
         $name = trim($request->name);
         $email = trim($request->email);
-        $password = $request->password;
+        $password = $request->password;;
         $birthday = $request->birthday;
-
-
         if ($request->politic != '1' && $request->politic != 'on') {
             $message[] = ['politic' => 'Politica de privacidade deve ser autorizada pelo usuário'];
         }
-
         if (Texto::checkIllegalChars($name)) {
             $message[] = ['name' => 'Insira um nick válido'];
         }
@@ -72,14 +69,12 @@ class UserController
         if ($idade <= (60 * 60 * 24 * 30 * 12 * $minAge)) {
             $message[] = ['birthday' => "Idade mínima é de $minAge anos"];
         }
-
-
         if ($message === []) {
             try {
                 $user = new User();
                 $user->name = $name;
                 $user->email = $email;
-                $user->password = md5($password);
+                $user->password = Hash::make($password);
                 $user->birthday = $birthday;
                 $user->save();
                 auth()->login($user);
@@ -90,10 +85,6 @@ class UserController
         } else {
             $status = 'error';
         }
-
-
-
-
         return json_encode(['status' => $status, 'message' => $message]);
 
     }

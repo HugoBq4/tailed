@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->integer('sequence')->default(0);
             $table->unsignedBigInteger('language')->nullable(false)->default(1);
             $table->foreign('language')->references('language_id')->on('languages');
-            $table->integer('type_user')->default(0);
+            $table->integer('type_user')->default(2);
             $table->unsignedBigInteger('status')->nullable(false)->default(1);
             $table->foreign('status')->references('status_id')->on('status');
             $table->rememberToken();

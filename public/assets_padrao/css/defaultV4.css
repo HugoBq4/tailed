@@ -12,6 +12,7 @@
     --background-color-rgb60: #3B0B2E99;
     --background-color-rgb90: #3B0B2EE5;
     --color-error: #e80505;
+    --color-error-rgb60: rgba(232, 5, 5, 0.6);
     --color-success: #32ef08;
 
     --bs-border-color: gray;
@@ -366,6 +367,22 @@ p.back_error {
 .btn-primary.disabled {
     background-color: var(--primary-color-rgb30);
     border-color: transparent;
+}
+
+.btn-danger{
+    background-color: var(--color-error)!important;
+    border-color: var(--color-error-rgb60)!important;
+}
+
+.btn-danger:hover{
+    background-color: var(--color-error-rgb60)!important;
+    border-color: var(--color-error-rgb60)!important;
+}
+
+.btn:first-child:active {
+    color: var(--bs-btn-active-color);
+    background-color: var(--primary-color-rgb60);
+    border-color: var(--primary-color);
 }
 
 .form-default input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

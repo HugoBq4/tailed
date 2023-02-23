@@ -61,7 +61,7 @@ class HomeController
 
     public function resetDB()
     {
-        if(Auth::user()->type_user == 1) {
+        if (Auth::user()->type_user == 1) {
             Artisan::call('migrate:fresh');
         }
 
@@ -71,14 +71,14 @@ class HomeController
     public function optimize()
     {
 //        if(Auth::user()->type_user == 1) {
-            Artisan::call('optimize');
-            Artisan::call('optimize:clear');
-            Artisan::call('route:clear');
-            Artisan::call('config:clear');
-            Artisan::call('view:clear');
-            dd('limpinho');
+        Artisan::call('optimize');
+        Artisan::call('cache:clear');
+        Artisan::call('optimize:clear');
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+        dd('limpinho');
 //        }
-        return redirect()->route('home');
     }
 
     public function privacidade()

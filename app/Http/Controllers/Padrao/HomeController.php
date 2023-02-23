@@ -14,6 +14,7 @@ class HomeController
 {
     public function index()
     {
+        Artisan::call('optimize');
         return view('padrao.home');
     }
 

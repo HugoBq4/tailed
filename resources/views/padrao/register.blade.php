@@ -129,7 +129,7 @@
 @section('js-custom')
 
     <script src="{{url('/assets_padrao/js/gsap.min.js')}}"></script>
-    <script src="{{url('/assets_padrao/js/Draggable.min.js')}}"></script>
+    <script src="{{url('/assets_padrao/js/draggable.min.js')}}"></script>
     <script src="{{url('/assets_padrao/js/solar-picker.js')}}"></script>
 
     <script>

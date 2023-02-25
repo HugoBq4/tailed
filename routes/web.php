@@ -26,5 +26,13 @@ Route::get('/termos-de-uso', [App\Http\Controllers\Padrao\HomeController::class,
 Route::get('/admin/reset-db', [App\Http\Controllers\Padrao\HomeController::class, 'resetDB'])->name('resetDB');
 Route::get('/admin/optimize', [App\Http\Controllers\Padrao\HomeController::class, 'optimize'])->name('optimize');
 
-//categorias
+//categories
 Route::get('/categoria/{category_id}', [App\Http\Controllers\Padrao\CategoriaController::class, 'index'])->name('categoria');
+
+
+/**
+ * Verification Routes
+ */
+Route::get('/email/verify', [App\Http\Controllers\Padrao\CategoriaController::class, 'verification.notice'])->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');

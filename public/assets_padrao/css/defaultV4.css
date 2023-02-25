@@ -86,6 +86,7 @@ a:hover {
 
 .default-bg {
     margin-top: auto !important;
+    padding-top: 50px!important;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -154,12 +155,6 @@ a:hover {
     max-height: 150px;
     z-index: -1;
 }
-
-.footer {
-    padding-top: 50px;
-    margin-top: 80px !important;
-}
-
 
 .border-all-60 {
     border: 1px solid var(--background-color-rgb60) !important;
@@ -369,14 +364,14 @@ p.back_error {
     border-color: transparent;
 }
 
-.btn-danger{
-    background-color: var(--color-error)!important;
-    border-color: var(--color-error-rgb60)!important;
+.btn-danger {
+    background-color: var(--color-error) !important;
+    border-color: var(--color-error-rgb60) !important;
 }
 
-.btn-danger:hover{
-    background-color: var(--color-error-rgb60)!important;
-    border-color: var(--color-error-rgb60)!important;
+.btn-danger:hover {
+    background-color: var(--color-error-rgb60) !important;
+    border-color: var(--color-error-rgb60) !important;
 }
 
 .btn:first-child:active {
@@ -600,3 +595,23 @@ body .twitter svg {
     fill: #1da1f2;
 }
 
+.notification i{
+    font-size: 16px;
+}
+.notification span{
+    display: none;
+}
+
+.notification.there span{
+    display: inline-block;
+    padding: 5px;
+    width: 5px;
+    height: 5px;
+    margin-left: -7px;
+    background-color: var(--primary-color)!important;
+}
+
+.notification.there:hover span{
+    background-color: var(--primary-color-rgb60) !important;
+    transition: all .2s linear;
+}

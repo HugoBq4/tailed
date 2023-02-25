@@ -25,11 +25,12 @@ use Laravel\Sanctum\HasApiTokens;
  * @property $language
  * @property $type_user
  * @property $status
+ * @property $email_verified_at
  *
  * @mixin Builder
  * @mixin Model
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -96,6 +97,40 @@ class User extends Authenticatable
                 ->join('posts', 'posts.post_id', '=', 'tails.post_id')
                 ->orderBy('updated_at', 'desc')
                 ->paginate() ?? [];
+    }
+
+    public function hasNotifications(): bool
+    {
+        if (count($this->getNotifications()) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getNotifications(): array
+    {
+        $notifications = [];
+        $email = $this->getEmailNotification();
+        if ($email != null) {
+            $notifications[] = $email;
+        }
+
+        return $notifications;
+    }
+
+    public function getEmailNotification(): ?object
+    {
+        if ($this->email_verified_at == null) {
+            $notification = (new class {
+            });
+            $notification->id = 'email';
+            $notification->date = time();
+            $notification->message = 'Verifique seu email agora!';
+            $notification->viewed = false;
+            return $notification;
+        }
+        return null;
     }
 
 }

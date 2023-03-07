@@ -124,9 +124,10 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->email_verified_at == null) {
             $notification = (new class {
             });
-            $notification->id = 'email';
+            $notification->id = 'validateEmail';
             $notification->date = time();
-            $notification->message = 'Verifique seu email agora!';
+            $notification->link = "javascript:void(0);";
+            $notification->message = 'Verifique seu email';
             $notification->viewed = false;
             return $notification;
         }

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\Padrao\HomeController::class, 'index'])->name('home');
 Route::get('/registrar', [App\Http\Controllers\Padrao\UserController::class, 'create'])->name('register');
 Route::post('/registrar/enviar', [App\Http\Controllers\Padrao\UserController::class, 'store'])->name('register-submit');
+Route::post('/validar/email', [App\Http\Controllers\Padrao\UserController::class, 'validateEmail'])->name('validate-email');
 Route::get('/login', [App\Http\Controllers\Padrao\HomeController::class, 'login'])->name('login');
 Route::post('/login/enviar', [App\Http\Controllers\Padrao\HomeController::class, 'submitLogin'])->name('login-submit');
 Route::get('/logout', [App\Http\Controllers\Padrao\HomeController::class, 'logout'])->name('logout');

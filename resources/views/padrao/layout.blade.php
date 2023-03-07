@@ -72,9 +72,10 @@
                         <span class="badge bg-danger badge-dot">&nbsp;</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownNotifications">
-
-                        <a class="dropdown-item" href="javascript:void(0);">Configurar</a>
-
+                        @foreach(Auth::user()->getNotifications() as $notification)
+                            <a class="dropdown-item" id="{{$notification->id}}"
+                               href="{{$notification->link}}">{{$notification->message}}</a>
+                        @endforeach
                     </div>
                 </li>
             @else
@@ -104,6 +105,33 @@
 </main>
 <!-- Fim conteúdo tails-->
 
+<!-- Modal verificar email -->
+<div class="modal fade" id="validateEmailModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="validateEmailForm" class="form-default">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="validateEmailTitle">Validar email</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span>Enviaremos um email de confirmação para:</span>
+                    <br>
+                    <br>
+                    <input type="text" name="email" id="email" placeholder="email *"
+                           value="{{Auth::user()->email ?? ''}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary send">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Fim modal verificar email -->
+
 @yield('modais')
 
 <!-- Início footer tails-->
@@ -126,6 +154,69 @@
 <script src="{{Url('/assets_padrao/js/jquery.validate.js')}}"></script>
 <script src="{{Url('/assets_padrao/js/validationsv1.js')}}"></script>
 @yield('js-custom')
+
+<script>
+    $('#validateEmail').on('click', async function () {
+        $('#validateEmailModal').modal('show');
+    });
+
+    $('#validateEmailForm').on('submit', async function (e) {
+        e.preventDefault();
+        const form = $(this);
+        const button = form.find('button[type="submit"]')
+        button.addClass('disabled').html(
+            $('<span>').prop({
+                innerHTML: '',
+                className: 'spinner-border spinner-border-sm',
+                style: 'margin: 0 18px;'
+            })
+        );
+        var invaliteInputs = $('.is_invalid');
+        invaliteInputs.addClass('is_invalid_back');
+        invaliteInputs.removeClass('is_invalid');
+
+        var oldErrors = $('p.error');
+        oldErrors.removeClass('error').addClass('back_error');
+        setTimeout(function () {
+            oldErrors.remove();
+        }, 2000);
+
+        await $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('validate-email') }}",
+            data: $(this).serialize(),
+            type: 'post',
+            dataType: 'json',
+            success: function (result) {
+                if (result.status === 'success') {
+                    $('.form-default input').addClass('is_valid');
+                    location.reload();
+                }
+                if (result.status === 'error') {
+                    result.message.forEach(function (value) {
+                        for (var nameError in value) {
+                            var input = $('[name="' + nameError + '"]');
+                            input.addClass('is_invalid');
+                            if (value[nameError] !== '') {
+                                input.parents('.form-default').prepend(
+                                    $('<p>').prop({
+                                        innerHTML: value[nameError],
+                                        className: 'error'
+                                    })
+                                );
+                            }
+                        }
+                    });
+                    button.removeClass('disabled').html('Enviar');
+                }
+            }, error: function (e) {
+                button.removeClass('disabled').addClass('btn-danger').html('Erro');
+            }
+        });
+    });
+</script>
 
 </body>
 

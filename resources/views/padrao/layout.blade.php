@@ -12,7 +12,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{Url('/assets_padrao/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{Url('/assets_padrao/bundles/izitoast/dist/css/iziToast.min.css')}}">
-    <link rel="stylesheet" href="{{Url('/assets_padrao/css/defaultV4.css')}}">
+    <link rel="stylesheet" href="{{Url('/assets_padrao/css/defaultV5.css')}}">
     <link rel="stylesheet" href="{{url('/assets_padrao/bundles/bootstrap-icons/font/bootstrap-icons.css')}}">
     @yield('css-custom')
 

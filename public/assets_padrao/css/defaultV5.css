@@ -635,3 +635,9 @@ body .twitter svg {
 .modal-body {
     color: white;
 }
+
+body.modal-open .main-content, body.modal-open header, body.modal-open footer {
+    -webkit-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
+}
